@@ -1,0 +1,20 @@
+class Solution:
+    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
+        if not nums: 
+            return
+        
+        count = 0
+        max_count = 0
+        
+        for i in nums:
+            if i == 1:
+                count += 1
+                
+            max_count = max(max_count, count)
+            
+            if i != 1:
+                count = 0
+                
+        return max_count
+            
+        
