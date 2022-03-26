@@ -4,4 +4,4 @@ Department d,
 where d.id = temp.departmentId and temp.rank = 1;
 
 # Here, I have partitioned rank by department, that is, I want only 1 ranked salary from each department. So I created a 'temp' table which is same as
-Employee table but with rank. And instead of joining Employee table, I joined this table with a condition rank = 1
+# Employee table but with rank. And instead of joining Employee table, I joined this table with a condition rank = 1
