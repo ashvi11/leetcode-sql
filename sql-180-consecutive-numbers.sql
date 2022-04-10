@@ -13,6 +13,6 @@ from Logs) temp
 where num = offset_1 and num = offset_2
 
 #In this approach, we are making 2 lead columns with offset 1 and offset 2(because we want 3 consesutive numbers) and if original num, and there two
-lead values are same at any point, that means there are 3 consecutive numbers.
+#lead values are same at any point, that means there are 3 consecutive numbers.
 
 
