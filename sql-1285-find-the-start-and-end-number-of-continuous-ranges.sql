@@ -6,7 +6,7 @@ from
 group by flag
 
 
-
+# WE CAN ALSO USE rank() INSTEAD OF row_number()
 #Here, we are looking at 3 columns- log_id, row number, and their difference(flag). 
 #Row numbers are continuous. So, if two log_ids are continuous, their difference with row_number will be equal. Eg:
 #+------------+--------------+----------------+
