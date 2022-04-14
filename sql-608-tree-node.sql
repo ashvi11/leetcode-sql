@@ -4,3 +4,4 @@ when id not in (select p_id from Tree where p_id is not null) then 'Leaf'
 else 'Inner' 
 end) as type
 from Tree
+order by 1
