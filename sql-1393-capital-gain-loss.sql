@@ -1,5 +1,5 @@
 
-Approach 1-
+#Approach 1-
 select stock_name, sum(price * case when operation = 'Buy' then -1 else 1 end) as capital_gain_loss 
 from Stocks 
 group by 1
@@ -7,7 +7,7 @@ group by 1
 #here, multiply the price with -1 if it is buy, else 1 and calculate the sum
 
 
-Approach 2-
+#Approach 2-
 select stock_name, 
 sum(case when operation = 'Sell' then price else null end) - sum(case when operation = 'Buy' then price else null end) as capital_gain_loss 
 from Stocks 
