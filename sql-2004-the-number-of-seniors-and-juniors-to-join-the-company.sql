@@ -1,3 +1,4 @@
+
 # Approach 1-
 # shorter version of approach 
 # shorter version of approach 2 and 3. For more detailed information, see approach 3
@@ -14,9 +15,6 @@ union
 select 'Junior' as experience, count(*) as accepted_candidates
 from running_sal
 where experience = 'Junior' and running_salary <= 70000- (select ifnull(max(running_salary),0) from running_sal where experience = 'Senior' and running_salary <= 70000)
-
-
-
 
 
 # Approach 2-
