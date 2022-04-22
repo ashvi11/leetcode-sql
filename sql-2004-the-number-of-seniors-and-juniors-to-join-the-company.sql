@@ -2,19 +2,19 @@
 # Approach 1-
 # shorter version of approach 
 # shorter version of approach 2 and 3. For more detailed information, see approach 3
-with running_sal as (
+with junior_senior as (
     select employee_id, experience, sum(salary) over(partition by experience order by salary rows between unbounded preceding and current row) as running_salary
     from Candidates
     order by experience, running_salary
     )
     
 select 'Senior' as experience, count(*) as accepted_candidates
-from running_sal
+from junior_senior
 where experience = 'Senior' and running_salary <= 70000 
 union
 select 'Junior' as experience, count(*) as accepted_candidates
-from running_sal
-where experience = 'Junior' and running_salary <= 70000- (select ifnull(max(running_salary),0) from running_sal where experience = 'Senior' and running_salary <= 70000)
+from junior_senior
+where experience = 'Junior' and running_salary <= 70000- (select ifnull(max(running_salary),0) from junior_senior where experience = 'Senior' and running_salary <= 70000)
 
 
 # Approach 2-
@@ -24,7 +24,7 @@ where experience = 'Junior' and running_salary <= 70000- (select ifnull(max(runn
 # make a table hired_junior which will hire(count) all juniors with running salary <= remaining_budget
 # union both these table
 
-with running_sal as (
+with junior_senior as (
     select employee_id, experience, 
     sum(salary) over(partition by experience order by salary rows between unbounded preceding and current row) as running_salary
     from Candidates
@@ -32,13 +32,13 @@ with running_sal as (
     
 hired_seniors as (
     select 'Senior' as experience, count(*) as accepted_candidates
-    from running_sal
+    from junior_senior
     where running_salary <= 70000 and experience = 'Senior'),
 
 hired_juniors as (
     select 'Junior' as experience, count(*) as accepted_candidates
-    from running_sal
-    where running_salary <= 70000-(select ifnull(max(running_salary),0) from running_sal where running_salary <= 70000 and experience = 'Senior') and experience = 'Junior')
+    from junior_senior
+    where running_salary <= 70000-(select ifnull(max(running_salary),0) from junior_senior where running_salary <= 70000 and experience = 'Senior') and experience = 'Junior')
 
 select * from hired_seniors
 union
