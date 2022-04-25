@@ -1,3 +1,10 @@
+
+# Approach 1
+#shorter version of approach 2
+select round(sum(case when order_date = customer_pref_delivery_date then 1 else 0 end)/count(*)*100, 2) as immediate_percentage
+from Delivery
+
+# Approach 2
 select round(sum(count_imm)/count(delivery_id)*100,2) as immediate_percentage 
 from 
 (select delivery_id,
