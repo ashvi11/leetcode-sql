@@ -5,7 +5,7 @@ with res as
 select distinct user_id 
 from res
 where datediff(purchase_date, lag_date) <= 7
-
+order by 1
 
 #Approach 2
 select distinct p1.user_id 
